@@ -1,0 +1,235 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Outfit', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #09151C;
+    color: #F0FDFB;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono, .tabular-nums {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.hud-stroke {
+  paint-order: stroke fill;
+  -webkit-text-stroke: 3px #07131A;
+  text-shadow: 0 2px 10px rgba(30, 227, 207, 0.45);
+}
+
+/* ============================================================================
+   SPACE-SHOOTER-UI9 DESIGN SYSTEM (Matched to Space-Shooter-UI9.webp)
+============================================================================ */
+
+/* Dark-teal HUD panel with glowing cyan-teal double frame */
+.hud-panel {
+  background: linear-gradient(180deg, rgba(16, 40, 49, 0.94) 0%, rgba(10, 25, 33, 0.96) 100%);
+  border: 1.5px solid #1EE3CF;
+  box-shadow:
+    0 10px 28px rgba(4, 12, 16, 0.88),
+    inset 0 0 0 2px rgba(7, 19, 26, 0.85),
+    inset 0 1px 0 rgba(30, 227, 207, 0.35);
+}
+
+.hud-panel-purple {
+  background: linear-gradient(180deg, rgba(20, 34, 56, 0.94) 0%, rgba(11, 22, 36, 0.96) 100%);
+  border: 1.5px solid #38BDF8;
+  box-shadow:
+    0 10px 28px rgba(4, 12, 16, 0.88),
+    inset 0 1px 0 rgba(56, 189, 248, 0.35);
+}
+
+/* Riveted Header Banner ("USER INTERFACES" / "VICTORY" / "GAME OVER") */
+.ss-banner {
+  position: relative;
+  background: linear-gradient(180deg, #173742 0%, #0E232B 100%);
+  border: 1.5px solid #1EE3CF;
+  border-radius: 6px;
+  box-shadow:
+    0 0 18px rgba(30, 227, 207, 0.25),
+    inset 0 0 12px rgba(30, 227, 207, 0.16);
+}
+
+.ss-banner::before,
+.ss-banner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 18px;
+  background: linear-gradient(180deg, #94A3B8 0%, #475569 100%);
+  border: 1px solid #CBD5E1;
+  border-radius: 2px;
+}
+
+.ss-banner::before {
+  left: -8px;
+  box-shadow: -14px 0 12px 2px rgba(30, 227, 207, 0.55);
+}
+
+.ss-banner::after {
+  right: -8px;
+  box-shadow: 14px 0 12px 2px rgba(30, 227, 207, 0.55);
+}
+
+.ss-banner-danger {
+  background: linear-gradient(180deg, #2B1726 0%, #190D18 100%);
+  border-color: #F43F5E;
+  box-shadow:
+    0 0 18px rgba(244, 63, 94, 0.28),
+    inset 0 0 12px rgba(244, 63, 94, 0.18);
+}
+
+/* Chamfered Folder-Tab Card ("[x] Items" / "[x] Weapon") */
+.ss-folder-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 22px 5px 10px;
+  background: linear-gradient(90deg, #1EE3CF 0%, #14B8A6 100%);
+  color: #062026;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+}
+
+.ss-folder-body {
+  background: linear-gradient(180deg, rgba(14, 35, 44, 0.96) 0%, rgba(9, 23, 30, 0.98) 100%);
+  border: 1.5px solid #1EE3CF;
+  border-radius: 0 6px 6px 6px;
+  box-shadow:
+    0 12px 30px rgba(3, 10, 14, 0.85),
+    inset 0 0 0 2px rgba(6, 17, 23, 0.9);
+}
+
+/* Beveled Space-Shooter Button ("Normal" -> "Hover" teal-to-chartreuse glow) */
+.ss-btn {
+  position: relative;
+  background: linear-gradient(180deg, #153540 0%, #0E242C 100%);
+  border: 1.5px solid #1EE3CF;
+  border-radius: 5px;
+  color: #F0FDFB;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 0 2px #09181F;
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), opacity 140ms ease;
+}
+
+.ss-btn:hover:not(:disabled) {
+  background: linear-gradient(180deg, #163C45 0%, #244D38 65%, #658B28 100%);
+  border-color: #A3E635;
+  color: #FFFFFF;
+}
+
+.ss-btn:disabled {
+  background: #1B2A32;
+  border-color: rgba(30, 227, 207, 0.35);
+  color: #64748B;
+  cursor: not-allowed;
+}
+
+/* Numbered List Button ("01 LIST BUTTON", "02 LIST BUTTON", "03 LIST BUTTON") */
+.ss-list-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(16, 38, 48, 0.92) 0%, rgba(11, 26, 34, 0.96) 100%);
+  border-top: 1.5px solid #1EE3CF;
+  border-bottom: 1.5px solid #EAB308;
+  border-left: none;
+  border-right: none;
+  padding: 8px 14px 8px 0;
+  color: #F8FAFC;
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ss-list-btn:hover:not(:disabled) {
+  background: linear-gradient(180deg, rgba(20, 52, 58, 0.95) 0%, rgba(74, 107, 34, 0.88) 100%);
+  border-top-color: #22D3EE;
+  border-bottom-color: #A3E635;
+}
+
+.ss-list-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 26px;
+  padding: 0 6px;
+  margin-right: 12px;
+  background: #FACC15;
+  color: #081C24;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* Square Icon Button (Bottom-right grid of Space-Shooter-UI9) */
+.ss-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #153540 0%, #0D222A 100%);
+  border: 1.5px solid #1EE3CF;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 2px #08171E;
+  color: #E2F8F5;
+  transition: transform 140ms ease;
+}
+
+.ss-icon-btn:hover {
+  background: linear-gradient(180deg, #18434D 0%, #587D25 100%);
+  border-color: #A3E635;
+  color: #FFFFFF;
+}
+
+/* Segmented Health / Energy Bar */
+.ss-seg-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px 4px;
+  background: #08161D;
+  border: 1px solid rgba(30, 227, 207, 0.55);
+  border-radius: 3px;
+}
+
+.ss-seg-cell {
+  width: 7px;
+  height: 12px;
+  border-radius: 1px;
+  background: rgba(30, 58, 70, 0.55);
+}
+
+.ss-seg-cell-lime {
+  background: linear-gradient(180deg, #BEF264 0%, #84CC16 100%);
+  box-shadow: 0 0 6px rgba(163, 230, 53, 0.5);
+}
+
+.ss-seg-cell-energy {
+  background: linear-gradient(180deg, #38BDF8 0%, #818CF8 100%);
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.5);
+}
